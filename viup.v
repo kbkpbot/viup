@@ -67,7 +67,7 @@ pub fn init_iup() {
 		for i in 0 .. os.args.len {
 			cargs << &char(os.args[i].str)
 		}
-		cargs << &char(0)
+		cargs << &char(unsafe { nil })
 		mut argc := os.args.len
 		C.IupOpen(&argc, &cargs.data)
 		C.IupSetGlobal(c'UTF8MODE', c'YES')

@@ -75,7 +75,7 @@ pub fn load_animation_frames(paths []string, attrs ...string) !&Image {
 	for i in 0 .. paths.len {
 		flists << &char(paths[i].str)
 	}
-	flists << &char(0)
+	flists << &char(unsafe { nil })
 	mut fnums := paths.len
 
 	ptr := C.IupLoadAnimationFrames(flists.data, fnums)

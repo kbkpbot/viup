@@ -136,7 +136,7 @@ pub fn get_param(title string, action Iparamcb, user_data voidptr, format string
 	for i in 0 .. param_data.len {
 		clist << &char(param_data[i].str)
 	}
-	clist << &char(0)
+	clist << &char(unsafe { nil })
 
 	return C.IupGetParamv(title.str, action, user_data, format.str, param_count, param_extra,
 		clist.data)
@@ -178,7 +178,7 @@ pub fn list_dialog(dialog_type int, title string, list []string, op int, max_col
 	for i in 0 .. list.len {
 		clist << &char(list[i].str)
 	}
-	clist << &char(0)
+	clist << &char(unsafe { nil })
 	return C.IupListDialog(dialog_type, title.str, list.len, clist.data, op, max_col,
 		max_lin, marks.data)
 }
